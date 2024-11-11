@@ -616,8 +616,7 @@ public class Mode1_Panel extends javax.swing.JPanel {
         Object[][] data = danhSach.toTableData();
         for (Object[] rowData : data) {
             tableModel.addRow(rowData);
-        }
-        danhSach.consoleOuput();
+        }   
     }
 
     //Quet va them ActionListener cho tat ca JComboBox trong sortOptions_Panel

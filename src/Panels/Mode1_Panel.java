@@ -616,7 +616,8 @@ public class Mode1_Panel extends javax.swing.JPanel {
         Object[][] data = danhSach.toTableData();
         for (Object[] rowData : data) {
             tableModel.addRow(rowData);
-        }   
+        }
+        rowIndex = -1;
     }
 
     //Quet va them ActionListener cho tat ca JComboBox trong sortOptions_Panel
@@ -727,12 +728,6 @@ public class Mode1_Panel extends javax.swing.JPanel {
 
         soLuong_TextField.setText(String.valueOf(tableModel.getValueAt(rowIndex, 4)));
         gia_TextField.setText(String.valueOf(tableModel.getValueAt(rowIndex, 5)));
-
-        System.out.println((String) tableModel.getValueAt(rowIndex, 1));
-        System.out.println((String) tableModel.getValueAt(rowIndex, 2));
-        System.out.println(ngaySanXuatDate);//(rowIndex,3)
-        System.out.println(String.valueOf(tableModel.getValueAt(rowIndex, 4)));
-        System.out.println(String.valueOf(tableModel.getValueAt(rowIndex, 5)));
     }//GEN-LAST:event_data1_TableMouseClicked
 
     //xu li nut cap nhat thong tin

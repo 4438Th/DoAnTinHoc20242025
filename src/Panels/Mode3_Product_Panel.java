@@ -589,12 +589,6 @@ public class Mode3_Product_Panel extends javax.swing.JPanel {
 
         soLuong_TextField.setText(String.valueOf(tableModel.getValueAt(rowIndex, 4)));
         gia_TextField.setText(String.valueOf(tableModel.getValueAt(rowIndex, 5)));
-
-        System.out.println((String) tableModel.getValueAt(rowIndex, 1));
-        System.out.println((String) tableModel.getValueAt(rowIndex, 2));
-        System.out.println(ngaySanXuatDate);//(rowIndex,3)
-        System.out.println(String.valueOf(tableModel.getValueAt(rowIndex, 4)));
-        System.out.println(String.valueOf(tableModel.getValueAt(rowIndex, 5)));
     }//GEN-LAST:event_data4_TableMouseClicked
 
     //xu li nut Clear

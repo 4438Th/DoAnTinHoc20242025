@@ -30,6 +30,20 @@ public class DanhSachHangHoa1 {
         this.current = 0;
     }
 
+    public DanhSachHangHoa1(DanhSachHangHoa1 originalList) {
+        this.listName = "Clone of " + originalList.getListName();
+        this.numOfList = originalList.getNumOfList();
+        this.current = originalList.getCurrent();
+        if (originalList.getList() != null) {
+            this.list = Arrays.stream(originalList.getList())
+                    .filter(hh -> hh != null)
+                    .map(HangHoa::new)
+                    .toArray(HangHoa[]::new);
+        } else {
+            this.list = null;
+        }
+    }
+
     public String getListName() {
         return listName;
     }
@@ -168,9 +182,7 @@ public class DanhSachHangHoa1 {
 
     //sap xep danh sach theo maHH
     public DanhSachHangHoa1 sort_maHH(int mode) {
-        DanhSachHangHoa1 sort_result = new DanhSachHangHoa1();//danh sach chua ket qua tim kiem
-        sort_result.list = Arrays.stream(this.list).filter(hangHoa -> hangHoa != null).toArray(HangHoa[]::new);//loc cac phan tu null ra khoi danh sach
-        sort_result.current = sort_result.list.length;//dong bo do dai de sap xep
+        DanhSachHangHoa1 sort_result = new DanhSachHangHoa1(this);//danh sach chua ket qua tim kiem
         if (mode == 0) {//mode 0 sap xep tang dan
             Arrays.sort(sort_result.list, Comparator.comparing(HangHoa::getMaHH));
         } else {//giam dan
@@ -181,9 +193,7 @@ public class DanhSachHangHoa1 {
 
     //sap xep danh sach theo tenHH
     public DanhSachHangHoa1 sort_tenHH(int mode) {
-        DanhSachHangHoa1 sort_result = new DanhSachHangHoa1();
-        sort_result.list = Arrays.stream(this.list).filter(hangHoa -> hangHoa != null).toArray(HangHoa[]::new);
-        sort_result.current = sort_result.list.length;
+        DanhSachHangHoa1 sort_result = new DanhSachHangHoa1(this);//danh sach chua ket qua tim kiem
         if (mode == 0) {
             Arrays.sort(sort_result.list, Comparator.comparing(HangHoa::getTenHH));
         } else {
@@ -194,9 +204,7 @@ public class DanhSachHangHoa1 {
 
     //sap xep danh sach theo so luong
     public DanhSachHangHoa1 sort_SoLuong(int mode) {
-        DanhSachHangHoa1 sort_result = new DanhSachHangHoa1();
-        sort_result.list = Arrays.stream(this.list).filter(hangHoa -> hangHoa != null).toArray(HangHoa[]::new);
-        sort_result.current = sort_result.list.length;
+        DanhSachHangHoa1 sort_result = new DanhSachHangHoa1(this);//danh sach chua ket qua tim kiem
         if (mode == 0) {
             Arrays.sort(sort_result.list, Comparator.comparing(HangHoa::getSoLuong));
         } else {
@@ -207,9 +215,7 @@ public class DanhSachHangHoa1 {
 
     //sap xep danh sach theo gia tien
     public DanhSachHangHoa1 sort_Gia(int mode) {
-        DanhSachHangHoa1 sort_result = new DanhSachHangHoa1();
-        sort_result.list = Arrays.stream(this.list).filter(hangHoa -> hangHoa != null).toArray(HangHoa[]::new);
-        sort_result.current = sort_result.list.length;
+        DanhSachHangHoa1 sort_result = new DanhSachHangHoa1(this);//danh sach chua ket qua tim kiem
         if (mode == 0) {
             Arrays.sort(sort_result.list, Comparator.comparing(HangHoa::getGiaTien));
         } else {
@@ -220,9 +226,7 @@ public class DanhSachHangHoa1 {
 
     //sap xep danh sach theo ngay san xuat
     public DanhSachHangHoa1 sort_NgaySanXuat(int mode) {
-        DanhSachHangHoa1 sort_result = new DanhSachHangHoa1();
-        sort_result.list = Arrays.stream(this.list).filter(hangHoa -> hangHoa != null).toArray(HangHoa[]::new);
-        sort_result.current = sort_result.list.length;
+        DanhSachHangHoa1 sort_result = new DanhSachHangHoa1(this);//danh sach chua ket qua tim kiem
         if (mode == 0) {
             Arrays.sort(sort_result.list, Comparator.comparing(HangHoa::getNgaySanXuat).reversed());
         } else {

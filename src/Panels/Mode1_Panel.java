@@ -650,6 +650,17 @@ public class Mode1_Panel extends javax.swing.JPanel {
         }
     }
 
+    // Ham de dat lai cac JComboBox ve gia tri mac dinh
+    private static void resetComboBoxes(JPanel panel) {
+        for (Component comp : panel.getComponents()) {
+            // Kiem tra xem thanh phan co phai la JComboBox
+            if (comp instanceof JComboBox) {
+                // Dat lai chi so duoc chon cua JComboBox ve mac dinh (chi so 0)
+                ((JComboBox<String>) comp).setSelectedIndex(0);
+            }
+        }
+    }
+
     //xu li nut Home
     private void home_Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_home_Button1ActionPerformed
         cardLayout.show(getParent(), "home");
@@ -717,7 +728,6 @@ public class Mode1_Panel extends javax.swing.JPanel {
     //lay thong tin hang hoa duoc click chon trong table
     private void data1_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_data1_TableMouseClicked
         rowIndex = data1_Table.getSelectedRow();
-        System.out.println("index: " + rowIndex);
         maHangHoa_TextField.setText((String) tableModel.getValueAt(rowIndex, 1));
         tenhangHoa_TextField.setText((String) tableModel.getValueAt(rowIndex, 2));
 
@@ -767,38 +777,50 @@ public class Mode1_Panel extends javax.swing.JPanel {
 
     //xu li nut lam moi table
     private void refresh_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refresh_ButtonActionPerformed
+        clearInfor();
+        resetComboBoxes(sortOptions_Panel);
         upDateTableData(list);
     }//GEN-LAST:event_refresh_ButtonActionPerformed
 
     //xu li cac options sap xep
     private void maHH_SortOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maHH_SortOptionActionPerformed
         int mode = (maHH_SortOption.getSelectedIndex() == 1) ? 0 : 1;
-        DanhSachHangHoa1 sorted_List = list.sort_maHH(mode);
-        upDateTableData(sorted_List);
+        if (maHH_SortOption.getSelectedIndex() != 0) {
+            DanhSachHangHoa1 sorted_List = list.sort_maHH(mode);
+            upDateTableData(sorted_List);
+        }
     }//GEN-LAST:event_maHH_SortOptionActionPerformed
 
     private void tenHH_SortOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tenHH_SortOptionActionPerformed
         int mode = (tenHH_SortOption.getSelectedIndex() == 1) ? 0 : 1;
-        DanhSachHangHoa1 sorted_List = list.sort_maHH(mode);
-        upDateTableData(sorted_List);
+        if (tenHH_SortOption.getSelectedIndex() != 0) {
+            DanhSachHangHoa1 sorted_List = list.sort_tenHH(mode);
+            upDateTableData(sorted_List);
+        }
     }//GEN-LAST:event_tenHH_SortOptionActionPerformed
 
     private void soLuong_SortOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_soLuong_SortOptionActionPerformed
         int mode = (soLuong_SortOption.getSelectedIndex() == 1) ? 0 : 1;
-        DanhSachHangHoa1 sorted_List = list.sort_SoLuong(mode);
-        upDateTableData(sorted_List);
+        if (soLuong_SortOption.getSelectedIndex() != 0) {
+            DanhSachHangHoa1 sorted_List = list.sort_SoLuong(mode);
+            upDateTableData(sorted_List);
+        }
     }//GEN-LAST:event_soLuong_SortOptionActionPerformed
 
     private void gia_SortOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gia_SortOptionActionPerformed
         int mode = (gia_SortOption.getSelectedIndex() == 1) ? 0 : 1;
-        DanhSachHangHoa1 sorted_List = list.sort_Gia(mode);
-        upDateTableData(sorted_List);
+        if (gia_SortOption.getSelectedIndex() != 0) {
+            DanhSachHangHoa1 sorted_List = list.sort_Gia(mode);
+            upDateTableData(sorted_List);
+        }
     }//GEN-LAST:event_gia_SortOptionActionPerformed
 
     private void ngaySanXuat_SortOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ngaySanXuat_SortOptionActionPerformed
         int mode = (ngaySanXuat_SortOption.getSelectedIndex() == 1) ? 0 : 1;
-        DanhSachHangHoa1 sorted_List = list.sort_NgaySanXuat(mode);
-        upDateTableData(sorted_List);
+        if (ngaySanXuat_SortOption.getSelectedIndex() != 0) {
+            DanhSachHangHoa1 sorted_List = list.sort_NgaySanXuat(mode);
+            upDateTableData(sorted_List);
+        }
     }//GEN-LAST:event_ngaySanXuat_SortOptionActionPerformed
 
     //xu li nut xoa toan bo danh sach

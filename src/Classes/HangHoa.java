@@ -29,6 +29,14 @@ public class HangHoa {
 
     }
 
+    public HangHoa(HangHoa originalHH) {
+        this.maHH = originalHH.getMaHH();
+        this.tenHH = originalHH.getTenHH();
+        this.ngaySanXuat = originalHH.getNgaySanXuat();
+        this.soLuong = originalHH.getSoLuong();
+        this.giaTien = originalHH.getGiaTien();
+    }
+
     //Property
     public String getMaHH() {
         return maHH;

@@ -1,14 +1,14 @@
-package Panels;
+package Views;
 
 import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-public class HomePanel extends javax.swing.JPanel {
+public class HomeView extends javax.swing.JPanel {
 
     private final CardLayout cardLayout;
 
-    public HomePanel(CardLayout cardLayout) {
+    public HomeView(CardLayout cardLayout) {
         initComponents();
         this.cardLayout = cardLayout;
     }
@@ -140,7 +140,7 @@ public class HomePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mode1_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mode1_ButtonActionPerformed
-        cardLayout.show(getParent(), "mode1");
+        cardLayout.show(getParent(), "PMArrayListView");
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         if (frame != null) {
             frame.setTitle("Quản lí hàng hóa - Danh sách đặc");
@@ -148,7 +148,7 @@ public class HomePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_mode1_ButtonActionPerformed
 
     private void mode2_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mode2_ButtonActionPerformed
-        cardLayout.show(getParent(), "mode2");
+        cardLayout.show(getParent(), "PMLinkedListView");
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         if (frame != null) {
             frame.setTitle("Quản lí hàng hóa - Danh sách liên kết đơn");
@@ -156,7 +156,7 @@ public class HomePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_mode2_ButtonActionPerformed
 
     private void mode3_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mode3_ButtonActionPerformed
-        cardLayout.show(getParent(), "mode3");
+        cardLayout.show(getParent(), "SMLinkedListView");
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         if (frame != null) {
             frame.setTitle("Quản lí hàng hóa - Nhà cung cấp");

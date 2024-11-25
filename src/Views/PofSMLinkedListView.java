@@ -1,4 +1,4 @@
-package Panels;
+package Views;
 
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -12,14 +12,14 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
-public class Mode2_Panel extends javax.swing.JPanel {
+public class PofSMLinkedListView extends javax.swing.JPanel {
 
     private final CardLayout cardLayout;
     private final DefaultTableModel tableModel;
     private int rowIndex = -1;
     DateTimeFormatter date_formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-    public Mode2_Panel(CardLayout cardLayout) {
+    public PofSMLinkedListView(CardLayout cardLayout) {
         initComponents();
         this.cardLayout = cardLayout;
         tableModel = (DefaultTableModel) data2_Table.getModel();
@@ -34,9 +34,9 @@ public class Mode2_Panel extends javax.swing.JPanel {
         sideMenu_Panel = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        search_maHH = new javax.swing.JTextField();
+        search_Id = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        search_TenHH = new javax.swing.JTextField();
+        search_Name = new javax.swing.JTextField();
         search_Button = new javax.swing.JButton();
         main_Panel = new javax.swing.JPanel();
         menu_Panel = new javax.swing.JPanel();
@@ -47,25 +47,26 @@ public class Mode2_Panel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        gia_TextField = new javax.swing.JTextField();
-        soLuong_TextField = new javax.swing.JTextField();
-        maHangHoa_TextField = new javax.swing.JTextField();
-        tenhangHoa_TextField = new javax.swing.JTextField();
-        ngaySanXuat_FormattedTextField = new javax.swing.JFormattedTextField();
+        product_Price_TextField = new javax.swing.JTextField();
+        product_Quantity_TextField = new javax.swing.JTextField();
+        product_Id_TextField = new javax.swing.JTextField();
+        product_Name_TextField = new javax.swing.JTextField();
+        product_Date_FormattedTextField = new javax.swing.JFormattedTextField();
         button_Panel = new javax.swing.JPanel();
         add_Button = new javax.swing.JButton();
         update_Button = new javax.swing.JButton();
         removeAll_Button = new javax.swing.JButton();
         remove_Button = new javax.swing.JButton();
         refresh_Button = new javax.swing.JButton();
+        back_Button = new javax.swing.JButton();
         clearInfo_Button = new javax.swing.JButton();
         sorter_Panel = new javax.swing.JPanel();
         sortOptions_Panel = new javax.swing.JPanel();
-        maHH_SortOption = new javax.swing.JComboBox<>();
-        tenHH_SortOption = new javax.swing.JComboBox<>();
-        ngaySanXuat_SortOption = new javax.swing.JComboBox<>();
-        soLuong_SortOption = new javax.swing.JComboBox<>();
-        gia_SortOption = new javax.swing.JComboBox<>();
+        product_Id_SortOption = new javax.swing.JComboBox<>();
+        product_name_SortOption = new javax.swing.JComboBox<>();
+        product_Date_SortOption = new javax.swing.JComboBox<>();
+        product_Quantity_SortOption = new javax.swing.JComboBox<>();
+        product_Price_SortOption = new javax.swing.JComboBox<>();
         dataWrapper_ScrollPane = new javax.swing.JScrollPane();
         data2_Table = new javax.swing.JTable();
         buttonBar_Panel = new javax.swing.JPanel();
@@ -105,8 +106,8 @@ public class Mode2_Panel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(sideMenu_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                    .addComponent(search_maHH)
-                    .addComponent(search_TenHH)
+                    .addComponent(search_Id)
+                    .addComponent(search_Name)
                     .addGroup(sideMenu_PanelLayout.createSequentialGroup()
                         .addGroup(sideMenu_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
@@ -125,11 +126,11 @@ public class Mode2_Panel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(search_maHH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(search_Id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(search_TenHH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(search_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(search_Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -177,10 +178,10 @@ public class Mode2_Panel extends javax.swing.JPanel {
         jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel6.setPreferredSize(new java.awt.Dimension(95, 20));
 
-        gia_TextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        product_Price_TextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        ngaySanXuat_FormattedTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd-MM-yyyy"))));
-        ngaySanXuat_FormattedTextField.setValue(new Date());
+        product_Date_FormattedTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd-MM-yyyy"))));
+        product_Date_FormattedTextField.setValue(new Date());
 
         javax.swing.GroupLayout infor_PanelLayout = new javax.swing.GroupLayout(infor_Panel);
         infor_Panel.setLayout(infor_PanelLayout);
@@ -196,21 +197,21 @@ public class Mode2_Panel extends javax.swing.JPanel {
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(maHangHoa_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tenhangHoa_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(product_Id_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(product_Name_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, infor_PanelLayout.createSequentialGroup()
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(ngaySanXuat_FormattedTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                            .addComponent(product_Date_FormattedTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                         .addGroup(infor_PanelLayout.createSequentialGroup()
                             .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(gia_TextField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                                .addComponent(soLuong_TextField)))))
+                                .addComponent(product_Price_TextField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                .addComponent(product_Quantity_TextField)))))
                 .addContainerGap())
         );
         infor_PanelLayout.setVerticalGroup(
@@ -221,24 +222,24 @@ public class Mode2_Panel extends javax.swing.JPanel {
                 .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(maHangHoa_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(product_Id_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(infor_PanelLayout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tenhangHoa_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(product_Name_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(8, 8, 8)
                 .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ngaySanXuat_FormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(product_Date_FormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(infor_PanelLayout.createSequentialGroup()
-                        .addComponent(soLuong_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(product_Quantity_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(gia_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(product_Price_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
 
@@ -265,7 +266,7 @@ public class Mode2_Panel extends javax.swing.JPanel {
 
         update_Button.setBackground(new java.awt.Color(176, 212, 184));
         update_Button.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        update_Button.setText("Sửa");
+        update_Button.setText("Cập nhật");
         update_Button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         update_Button.setPreferredSize(new java.awt.Dimension(100, 27));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -311,14 +312,28 @@ public class Mode2_Panel extends javax.swing.JPanel {
         refresh_Button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         refresh_Button.setPreferredSize(new java.awt.Dimension(100, 27));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 25;
         gridBagConstraints.ipady = 12;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         button_Panel.add(refresh_Button, gridBagConstraints);
+
+        back_Button.setBackground(new java.awt.Color(176, 212, 184));
+        back_Button.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        back_Button.setText("Trở lại");
+        back_Button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        back_Button.setPreferredSize(new java.awt.Dimension(100, 27));
+        back_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_ButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 25;
+        gridBagConstraints.ipady = 12;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        button_Panel.add(back_Button, gridBagConstraints);
 
         clearInfo_Button.setBackground(new java.awt.Color(93, 123, 111));
         clearInfo_Button.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -361,15 +376,15 @@ public class Mode2_Panel extends javax.swing.JPanel {
         sortOptions_Panel.setBackground(new java.awt.Color(93, 123, 111));
         sortOptions_Panel.setPreferredSize(new java.awt.Dimension(0, 0));
 
-        maHH_SortOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã hàng hóa", "Tăng dần", "Giảm dần" }));
+        product_Id_SortOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã hàng hóa", "Tăng dần", "Giảm dần" }));
 
-        tenHH_SortOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tên hàng hóa", "A -> Z", "Z -> A" }));
+        product_name_SortOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tên hàng hóa", "A -> Z", "Z -> A" }));
 
-        ngaySanXuat_SortOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày sản xuất", "Mới nhất", "Cũ nhất" }));
+        product_Date_SortOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày sản xuất", "Mới nhất", "Cũ nhất" }));
 
-        soLuong_SortOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Số lượng", "Tăng dần", "Giảm dần" }));
+        product_Quantity_SortOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Số lượng", "Tăng dần", "Giảm dần" }));
 
-        gia_SortOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Giá tiền", "Tăng dần", "Giảm dần" }));
+        product_Price_SortOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Giá tiền", "Tăng dần", "Giảm dần" }));
 
         javax.swing.GroupLayout sortOptions_PanelLayout = new javax.swing.GroupLayout(sortOptions_Panel);
         sortOptions_Panel.setLayout(sortOptions_PanelLayout);
@@ -379,15 +394,15 @@ public class Mode2_Panel extends javax.swing.JPanel {
             .addGroup(sortOptions_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(sortOptions_PanelLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(maHH_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(product_Id_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addComponent(tenHH_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(product_name_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addComponent(ngaySanXuat_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(product_Date_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addComponent(soLuong_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(product_Quantity_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addComponent(gia_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(product_Price_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         sortOptions_PanelLayout.setVerticalGroup(
@@ -397,11 +412,11 @@ public class Mode2_Panel extends javax.swing.JPanel {
                 .addGroup(sortOptions_PanelLayout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(sortOptions_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(maHH_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tenHH_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(ngaySanXuat_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(soLuong_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(gia_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(product_Id_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(product_name_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(product_Date_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(product_Quantity_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(product_Price_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -547,27 +562,27 @@ public class Mode2_Panel extends javax.swing.JPanel {
 
     //Ham clear o thong tin
     private void clearInfor() {
-        maHangHoa_TextField.setText("");
-        tenhangHoa_TextField.setText("");
-        ngaySanXuat_FormattedTextField.setText("");
-        soLuong_TextField.setText("");
-        gia_TextField.setText("");
+        product_Id_TextField.setText("");
+        product_Name_TextField.setText("");
+        product_Date_FormattedTextField.setText("");
+        product_Quantity_TextField.setText("");
+        product_Price_TextField.setText("");
     }
 
     //lay thong tin hang hoa duoc click chon trong table
     private void data2_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_data2_TableMouseClicked
         rowIndex = data2_Table.getSelectedRow();
         System.out.println("index: " + rowIndex);
-        maHangHoa_TextField.setText((String) tableModel.getValueAt(rowIndex, 1));
-        tenhangHoa_TextField.setText((String) tableModel.getValueAt(rowIndex, 2));
+        product_Id_TextField.setText((String) tableModel.getValueAt(rowIndex, 1));
+        product_Name_TextField.setText((String) tableModel.getValueAt(rowIndex, 2));
 
         String ngaySanXuatStr = (String) tableModel.getValueAt(rowIndex, 3);
         LocalDate ngaySanXuat = LocalDate.parse(ngaySanXuatStr, date_formatter);
         Date ngaySanXuatDate = Date.from(ngaySanXuat.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        ngaySanXuat_FormattedTextField.setValue(ngaySanXuatDate);
+        product_Date_FormattedTextField.setValue(ngaySanXuatDate);
 
-        soLuong_TextField.setText(String.valueOf(tableModel.getValueAt(rowIndex, 4)));
-        gia_TextField.setText(String.valueOf(tableModel.getValueAt(rowIndex, 5)));
+        product_Quantity_TextField.setText(String.valueOf(tableModel.getValueAt(rowIndex, 4)));
+        product_Price_TextField.setText(String.valueOf(tableModel.getValueAt(rowIndex, 5)));
 
         System.out.println((String) tableModel.getValueAt(rowIndex, 1));
         System.out.println((String) tableModel.getValueAt(rowIndex, 2));
@@ -580,6 +595,10 @@ public class Mode2_Panel extends javax.swing.JPanel {
     private void clearInfo_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearInfo_ButtonActionPerformed
         clearInfor();
     }//GEN-LAST:event_clearInfo_ButtonActionPerformed
+
+    private void back_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_ButtonActionPerformed
+        cardLayout.show(getParent(), "SMLinkedListView");
+    }//GEN-LAST:event_back_ButtonActionPerformed
 
     //Quet va them ActionListener cho tat ca JComboBox trong sortOptions_Panel
     private void addComboBoxListeners(JPanel panel) {
@@ -614,13 +633,12 @@ public class Mode2_Panel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_Button;
+    private javax.swing.JButton back_Button;
     private javax.swing.JPanel buttonBar_Panel;
     private javax.swing.JPanel button_Panel;
     private javax.swing.JButton clearInfo_Button;
     private javax.swing.JTable data2_Table;
     private javax.swing.JScrollPane dataWrapper_ScrollPane;
-    private javax.swing.JComboBox<String> gia_SortOption;
-    private javax.swing.JTextField gia_TextField;
     private javax.swing.JButton home_Button1;
     private javax.swing.JPanel infor_Panel;
     private javax.swing.JLabel jLabel1;
@@ -632,25 +650,27 @@ public class Mode2_Panel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JComboBox<String> maHH_SortOption;
-    private javax.swing.JTextField maHangHoa_TextField;
     private javax.swing.JPanel main_Panel;
     private javax.swing.JPanel menu_Panel;
-    private javax.swing.JFormattedTextField ngaySanXuat_FormattedTextField;
-    private javax.swing.JComboBox<String> ngaySanXuat_SortOption;
+    private javax.swing.JFormattedTextField product_Date_FormattedTextField;
+    private javax.swing.JComboBox<String> product_Date_SortOption;
+    private javax.swing.JComboBox<String> product_Id_SortOption;
+    private javax.swing.JTextField product_Id_TextField;
+    private javax.swing.JTextField product_Name_TextField;
+    private javax.swing.JComboBox<String> product_Price_SortOption;
+    private javax.swing.JTextField product_Price_TextField;
+    private javax.swing.JComboBox<String> product_Quantity_SortOption;
+    private javax.swing.JTextField product_Quantity_TextField;
+    private javax.swing.JComboBox<String> product_name_SortOption;
     private javax.swing.JButton refresh_Button;
     private javax.swing.JButton removeAll_Button;
     private javax.swing.JButton remove_Button;
     private javax.swing.JButton search_Button;
-    private javax.swing.JTextField search_TenHH;
-    private javax.swing.JTextField search_maHH;
+    private javax.swing.JTextField search_Id;
+    private javax.swing.JTextField search_Name;
     private javax.swing.JPanel sideMenu_Panel;
-    private javax.swing.JComboBox<String> soLuong_SortOption;
-    private javax.swing.JTextField soLuong_TextField;
     private javax.swing.JPanel sortOptions_Panel;
     private javax.swing.JPanel sorter_Panel;
-    private javax.swing.JComboBox<String> tenHH_SortOption;
-    private javax.swing.JTextField tenhangHoa_TextField;
     private javax.swing.JButton update_Button;
     // End of variables declaration//GEN-END:variables
 }

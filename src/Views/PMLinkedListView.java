@@ -1,18 +1,29 @@
-package Panels;
+package Views;
 
 import java.awt.CardLayout;
+import java.awt.Component;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 
-public class Mode3_Panel extends javax.swing.JPanel {
+public class PMLinkedListView extends javax.swing.JPanel {
 
     private final CardLayout cardLayout;
+    private final DefaultTableModel tableModel;
+    private int rowIndex = -1;
+    DateTimeFormatter date_formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-    public Mode3_Panel(CardLayout cardLayout) {
+    public PMLinkedListView(CardLayout cardLayout) {
         initComponents();
         this.cardLayout = cardLayout;
-
+        tableModel = (DefaultTableModel) data2_Table.getModel();
+        addComboBoxListeners(sortOptions_Panel);
     }
 
     @SuppressWarnings("unchecked")
@@ -20,17 +31,13 @@ public class Mode3_Panel extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        searchMenu_Panel = new javax.swing.JPanel();
+        sideMenu_Panel = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        search_maNCC = new javax.swing.JTextField();
+        search_Id = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        search_TenNCC = new javax.swing.JTextField();
+        search_Name = new javax.swing.JTextField();
         search_Button = new javax.swing.JButton();
-        search_DiaChiNCC = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        search_SdtNCC = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
         main_Panel = new javax.swing.JPanel();
         menu_Panel = new javax.swing.JPanel();
         infor_Panel = new javax.swing.JPanel();
@@ -39,24 +46,28 @@ public class Mode3_Panel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        diaChi_TextField = new javax.swing.JTextField();
-        sdt_TextField = new javax.swing.JTextField();
-        maNSX_TextField = new javax.swing.JTextField();
-        tenNSX_TextField = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        product_Price_TextField = new javax.swing.JTextField();
+        product_Quantity_TextField = new javax.swing.JTextField();
+        product_Id_TextField = new javax.swing.JTextField();
+        product_Name_TextField = new javax.swing.JTextField();
+        product_Date_FormattedTextField = new javax.swing.JFormattedTextField();
         button_Panel = new javax.swing.JPanel();
         add_Button = new javax.swing.JButton();
         update_Button = new javax.swing.JButton();
+        removeAll_Button = new javax.swing.JButton();
         remove_Button = new javax.swing.JButton();
         refresh_Button = new javax.swing.JButton();
-        removeAll_Button = new javax.swing.JButton();
-        danhSachHH_Button = new javax.swing.JButton();
         clearInfo_Button = new javax.swing.JButton();
         sorter_Panel = new javax.swing.JPanel();
         sortOptions_Panel = new javax.swing.JPanel();
-        maNSX_SortOption = new javax.swing.JComboBox<>();
-        tenNSX_SortOption = new javax.swing.JComboBox<>();
+        product_Id_SortOption = new javax.swing.JComboBox<>();
+        product_name_SortOption = new javax.swing.JComboBox<>();
+        product_Date_SortOption = new javax.swing.JComboBox<>();
+        product_Quantity_SortOption = new javax.swing.JComboBox<>();
+        product_Price_SortOption = new javax.swing.JComboBox<>();
         dataWrapper_ScrollPane = new javax.swing.JScrollPane();
-        data3_Table = new javax.swing.JTable();
+        data2_Table = new javax.swing.JTable();
         buttonBar_Panel = new javax.swing.JPanel();
         home_Button1 = new javax.swing.JButton();
 
@@ -66,18 +77,18 @@ public class Mode3_Panel extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1024, 768));
         setPreferredSize(new java.awt.Dimension(1024, 768));
 
-        searchMenu_Panel.setBackground(new java.awt.Color(176, 212, 184));
-        searchMenu_Panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        searchMenu_Panel.setAlignmentX(0.0F);
-        searchMenu_Panel.setAlignmentY(0.0F);
+        sideMenu_Panel.setBackground(new java.awt.Color(176, 212, 184));
+        sideMenu_Panel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        sideMenu_Panel.setAlignmentX(0.0F);
+        sideMenu_Panel.setAlignmentY(0.0F);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Tìm kiếm nhà cung cấp");
+        jLabel7.setText("Tìm kiếm hàng hóa");
 
-        jLabel8.setText("Mã :");
+        jLabel8.setText("Mã hàng hóa :");
 
-        jLabel9.setText("Họ tên :");
+        jLabel9.setText("Tên hàng hóa :");
 
         search_Button.setBackground(new java.awt.Color(93, 123, 111));
         search_Button.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -86,55 +97,39 @@ public class Mode3_Panel extends javax.swing.JPanel {
         search_Button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         search_Button.setPreferredSize(new java.awt.Dimension(100, 27));
 
-        jLabel10.setText("Địa chỉ :");
-
-        jLabel11.setText("Số điện thoại :");
-
-        javax.swing.GroupLayout searchMenu_PanelLayout = new javax.swing.GroupLayout(searchMenu_Panel);
-        searchMenu_Panel.setLayout(searchMenu_PanelLayout);
-        searchMenu_PanelLayout.setHorizontalGroup(
-            searchMenu_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchMenu_PanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout sideMenu_PanelLayout = new javax.swing.GroupLayout(sideMenu_Panel);
+        sideMenu_Panel.setLayout(sideMenu_PanelLayout);
+        sideMenu_PanelLayout.setHorizontalGroup(
+            sideMenu_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sideMenu_PanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(searchMenu_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(sideMenu_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                    .addComponent(search_maNCC)
-                    .addComponent(search_TenNCC)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchMenu_PanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(search_Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(search_DiaChiNCC)
-                    .addComponent(search_SdtNCC)
-                    .addGroup(searchMenu_PanelLayout.createSequentialGroup()
-                        .addGroup(searchMenu_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(search_Id)
+                    .addComponent(search_Name)
+                    .addGroup(sideMenu_PanelLayout.createSequentialGroup()
+                        .addGroup(sideMenu_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jLabel9))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sideMenu_PanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(search_Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-        searchMenu_PanelLayout.setVerticalGroup(
-            searchMenu_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(searchMenu_PanelLayout.createSequentialGroup()
+        sideMenu_PanelLayout.setVerticalGroup(
+            sideMenu_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(sideMenu_PanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(search_maNCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(search_Id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(search_TenNCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(search_DiaChiNCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(search_SdtNCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(search_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(search_Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -147,36 +142,45 @@ public class Mode3_Panel extends javax.swing.JPanel {
         menu_Panel.setBackground(new java.awt.Color(176, 212, 184));
         menu_Panel.setAlignmentX(0.0F);
         menu_Panel.setAlignmentY(0.0F);
-        menu_Panel.setPreferredSize(new java.awt.Dimension(0, 0));
 
         infor_Panel.setBackground(new java.awt.Color(176, 212, 184));
         infor_Panel.setAlignmentX(0.0F);
-        infor_Panel.setPreferredSize(new java.awt.Dimension(0, 0));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Thông tin nhà cung cấp");
+        jLabel1.setText("Thông tin hàng hóa");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Mã :");
+        jLabel2.setText("Mã hàng hóa :");
         jLabel2.setPreferredSize(new java.awt.Dimension(90, 20));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Họ tên :");
+        jLabel3.setText("Tên hàng hóa :");
         jLabel3.setPreferredSize(new java.awt.Dimension(90, 20));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Địa chỉ :");
+        jLabel4.setText("Ngày sản xuất :");
         jLabel4.setPreferredSize(new java.awt.Dimension(95, 20));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setText("Số điện thoại:");
+        jLabel5.setText("Số lượng :");
         jLabel5.setPreferredSize(new java.awt.Dimension(95, 20));
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setText("Giá tiền :");
+        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel6.setPreferredSize(new java.awt.Dimension(95, 20));
+
+        product_Price_TextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        product_Date_FormattedTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd-MM-yyyy"))));
+        product_Date_FormattedTextField.setValue(new Date());
 
         javax.swing.GroupLayout infor_PanelLayout = new javax.swing.GroupLayout(infor_Panel);
         infor_Panel.setLayout(infor_PanelLayout);
@@ -185,51 +189,57 @@ public class Mode3_Panel extends javax.swing.JPanel {
             .addGroup(infor_PanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(infor_PanelLayout.createSequentialGroup()
+                        .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(infor_PanelLayout.createSequentialGroup()
+                            .addComponent(product_Id_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(product_Name_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, infor_PanelLayout.createSequentialGroup()
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(product_Date_FormattedTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                        .addGroup(infor_PanelLayout.createSequentialGroup()
+                            .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(sdt_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(infor_PanelLayout.createSequentialGroup()
-                                .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(maNSX_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tenNSX_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(infor_PanelLayout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(diaChi_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 42, Short.MAX_VALUE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(product_Price_TextField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                .addComponent(product_Quantity_TextField)))))
                 .addContainerGap())
         );
         infor_PanelLayout.setVerticalGroup(
             infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(infor_PanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(product_Id_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(infor_PanelLayout.createSequentialGroup()
-                        .addComponent(maNSX_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(28, 28, 28)
                         .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tenNSX_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(product_Name_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(8, 8, 8)
                 .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(diaChi_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(product_Date_FormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sdt_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                    .addGroup(infor_PanelLayout.createSequentialGroup()
+                        .addComponent(product_Quantity_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(infor_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(product_Price_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
 
         button_Panel.setBackground(new java.awt.Color(93, 123, 111));
@@ -247,7 +257,7 @@ public class Mode3_Panel extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 19;
+        gridBagConstraints.ipadx = 25;
         gridBagConstraints.ipady = 12;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -255,18 +265,30 @@ public class Mode3_Panel extends javax.swing.JPanel {
 
         update_Button.setBackground(new java.awt.Color(176, 212, 184));
         update_Button.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        update_Button.setText("Sửa");
+        update_Button.setText("Cập nhật");
         update_Button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         update_Button.setPreferredSize(new java.awt.Dimension(100, 27));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 27;
-        gridBagConstraints.ipady = 8;
+        gridBagConstraints.ipadx = 25;
+        gridBagConstraints.ipady = 12;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         button_Panel.add(update_Button, gridBagConstraints);
+
+        removeAll_Button.setBackground(new java.awt.Color(176, 212, 184));
+        removeAll_Button.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        removeAll_Button.setText("Xóa danh sách");
+        removeAll_Button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        removeAll_Button.setPreferredSize(new java.awt.Dimension(100, 27));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.ipadx = 25;
+        gridBagConstraints.ipady = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        button_Panel.add(removeAll_Button, gridBagConstraints);
 
         remove_Button.setBackground(new java.awt.Color(176, 212, 184));
         remove_Button.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -277,8 +299,8 @@ public class Mode3_Panel extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 26;
-        gridBagConstraints.ipady = 8;
+        gridBagConstraints.ipadx = 25;
+        gridBagConstraints.ipady = 12;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         button_Panel.add(remove_Button, gridBagConstraints);
@@ -298,30 +320,6 @@ public class Mode3_Panel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         button_Panel.add(refresh_Button, gridBagConstraints);
 
-        removeAll_Button.setBackground(new java.awt.Color(176, 212, 184));
-        removeAll_Button.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        removeAll_Button.setText("Xóa danh sách");
-        removeAll_Button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        removeAll_Button.setPreferredSize(new java.awt.Dimension(100, 27));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.ipadx = 25;
-        gridBagConstraints.ipady = 12;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        button_Panel.add(removeAll_Button, gridBagConstraints);
-
-        danhSachHH_Button.setBackground(new java.awt.Color(93, 123, 111));
-        danhSachHH_Button.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        danhSachHH_Button.setForeground(new java.awt.Color(255, 255, 255));
-        danhSachHH_Button.setText("Danh sách hàng hóa");
-        danhSachHH_Button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        danhSachHH_Button.setPreferredSize(new java.awt.Dimension(100, 27));
-        danhSachHH_Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                danhSachHH_ButtonActionPerformed(evt);
-            }
-        });
-
         clearInfo_Button.setBackground(new java.awt.Color(93, 123, 111));
         clearInfo_Button.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         clearInfo_Button.setForeground(new java.awt.Color(255, 255, 255));
@@ -337,28 +335,24 @@ public class Mode3_Panel extends javax.swing.JPanel {
         menu_PanelLayout.setHorizontalGroup(
             menu_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menu_PanelLayout.createSequentialGroup()
-                .addGroup(menu_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(infor_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
-                    .addGroup(menu_PanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(danhSachHH_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(clearInfo_Button)))
+                .addGroup(menu_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(infor_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clearInfo_Button))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(button_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                .addComponent(button_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         menu_PanelLayout.setVerticalGroup(
             menu_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(button_Panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menu_PanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(infor_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(menu_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(danhSachHH_Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clearInfo_Button))
-                .addGap(16, 16, 16))
+            .addGroup(menu_PanelLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(menu_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(menu_PanelLayout.createSequentialGroup()
+                        .addComponent(infor_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(clearInfo_Button)
+                        .addContainerGap())
+                    .addComponent(button_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         sorter_Panel.setBackground(new java.awt.Color(93, 123, 111));
@@ -367,21 +361,33 @@ public class Mode3_Panel extends javax.swing.JPanel {
         sortOptions_Panel.setBackground(new java.awt.Color(93, 123, 111));
         sortOptions_Panel.setPreferredSize(new java.awt.Dimension(0, 0));
 
-        maNSX_SortOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã", "Tăng dần", "Giảm dần" }));
+        product_Id_SortOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã hàng hóa", "Tăng dần", "Giảm dần" }));
 
-        tenNSX_SortOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Họ tên", "A->Z", "Z->A" }));
+        product_name_SortOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tên hàng hóa", "A -> Z", "Z -> A" }));
+
+        product_Date_SortOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày sản xuất", "Mới nhất", "Cũ nhất" }));
+
+        product_Quantity_SortOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Số lượng", "Tăng dần", "Giảm dần" }));
+
+        product_Price_SortOption.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Giá tiền", "Tăng dần", "Giảm dần" }));
 
         javax.swing.GroupLayout sortOptions_PanelLayout = new javax.swing.GroupLayout(sortOptions_Panel);
         sortOptions_Panel.setLayout(sortOptions_PanelLayout);
         sortOptions_PanelLayout.setHorizontalGroup(
             sortOptions_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 187, Short.MAX_VALUE)
+            .addGap(0, 574, Short.MAX_VALUE)
             .addGroup(sortOptions_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(sortOptions_PanelLayout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(maNSX_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, Short.MAX_VALUE)
-                    .addComponent(tenNSX_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()
+                    .addComponent(product_Id_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(product_name_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(product_Date_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(product_Quantity_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(product_Price_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         sortOptions_PanelLayout.setVerticalGroup(
@@ -389,11 +395,14 @@ public class Mode3_Panel extends javax.swing.JPanel {
             .addGap(0, 34, Short.MAX_VALUE)
             .addGroup(sortOptions_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(sortOptions_PanelLayout.createSequentialGroup()
-                    .addContainerGap()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(sortOptions_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(maNSX_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tenNSX_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap()))
+                        .addComponent(product_Id_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(product_name_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(product_Date_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(product_Quantity_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(product_Price_SortOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout sorter_PanelLayout = new javax.swing.GroupLayout(sorter_Panel);
@@ -402,15 +411,15 @@ public class Mode3_Panel extends javax.swing.JPanel {
             sorter_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sorter_PanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(sortOptions_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sortOptions_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         sorter_PanelLayout.setVerticalGroup(
             sorter_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sorter_PanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(sortOptions_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sorter_PanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(sortOptions_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         dataWrapper_ScrollPane.setBackground(new java.awt.Color(176, 212, 184));
@@ -418,32 +427,37 @@ public class Mode3_Panel extends javax.swing.JPanel {
         dataWrapper_ScrollPane.setAlignmentX(0.0F);
         dataWrapper_ScrollPane.setAlignmentY(0.0F);
 
-        data3_Table.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        data3_Table.setModel(new javax.swing.table.DefaultTableModel(
+        data2_Table.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        data2_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "STT", "Mã", "Họ tên", "Địa chỉ", "Số điện thoại"
+                "STT", "Mã hàng hóa", "Tên hàng hóa", "Ngày sản xuất", "Số lượng", "Giá tiền"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, true, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        data3_Table.setAlignmentX(0.0F);
-        data3_Table.setAlignmentY(0.0F);
-        data3_Table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        data3_Table.setColumnSelectionAllowed(true);
-        data3_Table.getTableHeader().setReorderingAllowed(false);
-        dataWrapper_ScrollPane.setViewportView(data3_Table);
-        data3_Table.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (data3_Table.getColumnModel().getColumnCount() > 0) {
-            data3_Table.getColumnModel().getColumn(0).setMaxWidth(50);
+        data2_Table.setAlignmentX(0.0F);
+        data2_Table.setAlignmentY(0.0F);
+        data2_Table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        data2_Table.setColumnSelectionAllowed(true);
+        data2_Table.getTableHeader().setReorderingAllowed(false);
+        data2_Table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                data2_TableMouseClicked(evt);
+            }
+        });
+        dataWrapper_ScrollPane.setViewportView(data2_Table);
+        data2_Table.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (data2_Table.getColumnModel().getColumnCount() > 0) {
+            data2_Table.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
         javax.swing.GroupLayout main_PanelLayout = new javax.swing.GroupLayout(main_Panel);
@@ -451,21 +465,21 @@ public class Mode3_Panel extends javax.swing.JPanel {
         main_PanelLayout.setHorizontalGroup(
             main_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(sorter_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(main_PanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(menu_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(dataWrapper_ScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, main_PanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(menu_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 711, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         main_PanelLayout.setVerticalGroup(
             main_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(main_PanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(menu_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(menu_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sorter_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(dataWrapper_ScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
+                .addComponent(dataWrapper_ScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -506,7 +520,7 @@ public class Mode3_Panel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                .addComponent(searchMenu_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sideMenu_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(main_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(buttonBar_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
@@ -516,7 +530,7 @@ public class Mode3_Panel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(buttonBar_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(searchMenu_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sideMenu_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(main_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
@@ -531,64 +545,112 @@ public class Mode3_Panel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_home_Button1ActionPerformed
 
-    //xu li nut danh sach hang hoa cua nsx
-    private void danhSachHH_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_danhSachHH_ButtonActionPerformed
-        cardLayout.show(getParent(), "mode3_product");
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        if (frame != null) {
-            frame.setTitle("Quản lí hàng hóa - Nhà cung cấp/Hàng hóa");
-        }
-    }//GEN-LAST:event_danhSachHH_ButtonActionPerformed
+    //Ham clear o thong tin
+    private void clearInfor() {
+        product_Id_TextField.setText("");
+        product_Name_TextField.setText("");
+        product_Date_FormattedTextField.setText("");
+        product_Quantity_TextField.setText("");
+        product_Price_TextField.setText("");
+    }
+
+    //lay thong tin hang hoa duoc click chon trong table
+    private void data2_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_data2_TableMouseClicked
+        rowIndex = data2_Table.getSelectedRow();
+        System.out.println("index: " + rowIndex);
+        product_Id_TextField.setText((String) tableModel.getValueAt(rowIndex, 1));
+        product_Name_TextField.setText((String) tableModel.getValueAt(rowIndex, 2));
+
+        String ngaySanXuatStr = (String) tableModel.getValueAt(rowIndex, 3);
+        LocalDate ngaySanXuat = LocalDate.parse(ngaySanXuatStr, date_formatter);
+        Date ngaySanXuatDate = Date.from(ngaySanXuat.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        product_Date_FormattedTextField.setValue(ngaySanXuatDate);
+
+        product_Quantity_TextField.setText(String.valueOf(tableModel.getValueAt(rowIndex, 4)));
+        product_Price_TextField.setText(String.valueOf(tableModel.getValueAt(rowIndex, 5)));
+
+        System.out.println((String) tableModel.getValueAt(rowIndex, 1));
+        System.out.println((String) tableModel.getValueAt(rowIndex, 2));
+        System.out.println(ngaySanXuatDate);//(rowIndex,3)
+        System.out.println(String.valueOf(tableModel.getValueAt(rowIndex, 4)));
+        System.out.println(String.valueOf(tableModel.getValueAt(rowIndex, 5)));
+    }//GEN-LAST:event_data2_TableMouseClicked
 
     //xu li nut Clear
     private void clearInfo_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearInfo_ButtonActionPerformed
         clearInfor();
     }//GEN-LAST:event_clearInfo_ButtonActionPerformed
 
-    //Ham clear o thong tin
-    private void clearInfor() {
-        maNSX_TextField.setText("");
-        tenNSX_TextField.setText("");    
+    //Quet va them ActionListener cho tat ca JComboBox trong sortOptions_Panel
+    private void addComboBoxListeners(JPanel panel) {
+        for (Component comp : panel.getComponents()) {
+            // Kiem tra xem thanh phan co phai la JComboBox hay khong
+            if (comp instanceof JComboBox) {
+                // Chuyen doi kieu thanh JComboBox<String>
+                JComboBox<String> comboBox = (JComboBox<String>) comp;
+
+                // Them ActionListener cho JComboBox
+                comboBox.addActionListener(e -> {
+                    // Kiem tra neu lua chon khong phai la mac dinh
+                    if (comboBox.getSelectedIndex() != 0) {
+                        resetOtherComboBoxes(panel, comboBox);
+                    }
+                });
+            }
+        }
     }
+
+    // Ham de dat lai cac JComboBox khac ve gia tri mac dinh
+    private static void resetOtherComboBoxes(JPanel panel, JComboBox<String> selectedComboBox) {
+        for (Component comp : panel.getComponents()) {
+            // Kiem tra xem thanh phan co phai la JComboBox va khong phai la JComboBox duoc chon
+            if (comp instanceof JComboBox && comp != selectedComboBox) {
+                // Dat lai chi so duoc chon cua JComboBox ve mac dinh (chi so 0)
+                ((JComboBox<String>) comp).setSelectedIndex(0);
+            }
+        }
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_Button;
     private javax.swing.JPanel buttonBar_Panel;
     private javax.swing.JPanel button_Panel;
     private javax.swing.JButton clearInfo_Button;
-    private javax.swing.JButton danhSachHH_Button;
-    private javax.swing.JTable data3_Table;
+    private javax.swing.JTable data2_Table;
     private javax.swing.JScrollPane dataWrapper_ScrollPane;
-    private javax.swing.JTextField diaChi_TextField;
     private javax.swing.JButton home_Button1;
     private javax.swing.JPanel infor_Panel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JComboBox<String> maNSX_SortOption;
-    private javax.swing.JTextField maNSX_TextField;
     private javax.swing.JPanel main_Panel;
     private javax.swing.JPanel menu_Panel;
+    private javax.swing.JFormattedTextField product_Date_FormattedTextField;
+    private javax.swing.JComboBox<String> product_Date_SortOption;
+    private javax.swing.JComboBox<String> product_Id_SortOption;
+    private javax.swing.JTextField product_Id_TextField;
+    private javax.swing.JTextField product_Name_TextField;
+    private javax.swing.JComboBox<String> product_Price_SortOption;
+    private javax.swing.JTextField product_Price_TextField;
+    private javax.swing.JComboBox<String> product_Quantity_SortOption;
+    private javax.swing.JTextField product_Quantity_TextField;
+    private javax.swing.JComboBox<String> product_name_SortOption;
     private javax.swing.JButton refresh_Button;
     private javax.swing.JButton removeAll_Button;
     private javax.swing.JButton remove_Button;
-    private javax.swing.JTextField sdt_TextField;
-    private javax.swing.JPanel searchMenu_Panel;
     private javax.swing.JButton search_Button;
-    private javax.swing.JTextField search_DiaChiNCC;
-    private javax.swing.JTextField search_SdtNCC;
-    private javax.swing.JTextField search_TenNCC;
-    private javax.swing.JTextField search_maNCC;
+    private javax.swing.JTextField search_Id;
+    private javax.swing.JTextField search_Name;
+    private javax.swing.JPanel sideMenu_Panel;
     private javax.swing.JPanel sortOptions_Panel;
     private javax.swing.JPanel sorter_Panel;
-    private javax.swing.JComboBox<String> tenNSX_SortOption;
-    private javax.swing.JTextField tenNSX_TextField;
     private javax.swing.JButton update_Button;
     // End of variables declaration//GEN-END:variables
 }

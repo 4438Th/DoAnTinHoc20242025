@@ -1,8 +1,8 @@
-package quanlyhanghoa;
 
-import Frame.MainFrame;
 
-public class QuanLyHangHoa {
+import Views.MainFrame;
+
+public class Main {
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -1,10 +1,10 @@
-package Frame;
+package Views;
 
-import Panels.HomePanel;
-import Panels.Mode1_Panel;
-import Panels.Mode2_Panel;
-import Panels.Mode3_Panel;
-import Panels.Mode3_Product_Panel;
+import Views.HomeView;
+import Views.PMArrayListView;
+import Views.PMLinkedListView;
+import Views.SMLinkedListView;
+import Views.PofSMLinkedListView;
 
 import java.awt.CardLayout;
 
@@ -17,18 +17,18 @@ public class MainFrame extends javax.swing.JFrame {
         cardLayout = (CardLayout) getContentPane().getLayout();//bien quan li chuyen doi giua cac panel
         setSize(1024, 768);
         //Khoi tao cac panel
-        HomePanel home_Panel = new HomePanel(cardLayout);
-        Mode1_Panel mode1_Panel = new Mode1_Panel(cardLayout);
-        Mode2_Panel mode2_Panel = new Mode2_Panel(cardLayout);
-        Mode3_Panel mode3_Panel = new Mode3_Panel(cardLayout);
-        Mode3_Product_Panel mode3_product_Panel = new Mode3_Product_Panel(cardLayout);
+        HomeView home_Panel = new HomeView(cardLayout);
+        PMArrayListView PMArrayListView = new PMArrayListView(cardLayout);
+        PMLinkedListView PMLinkedListView = new PMLinkedListView(cardLayout);
+        SMLinkedListView SMLinkedListView = new SMLinkedListView(cardLayout);
+        PofSMLinkedListView PofSMLinkedListView = new PofSMLinkedListView(cardLayout);
 
         //Them cac panel vao mainFrame
         getContentPane().add(home_Panel, "home");
-        getContentPane().add(mode1_Panel, "mode1");
-        getContentPane().add(mode2_Panel, "mode2");
-        getContentPane().add(mode3_Panel, "mode3");
-        getContentPane().add(mode3_product_Panel, "mode3_product");
+        getContentPane().add(PMArrayListView, "PMArrayListView");
+        getContentPane().add(PMLinkedListView, "PMLinkedListView");
+        getContentPane().add(SMLinkedListView, "SMLinkedListView");
+        getContentPane().add(PofSMLinkedListView, "PofSMLinkedListView");
 
         //hien thi home_Panel lam mac dinh
         cardLayout.show(getContentPane(), "home");

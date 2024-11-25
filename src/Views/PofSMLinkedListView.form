@@ -72,8 +72,8 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel7" alignment="1" pref="198" max="32767" attributes="0"/>
-                      <Component id="search_maHH" max="32767" attributes="0"/>
-                      <Component id="search_TenHH" alignment="0" max="32767" attributes="0"/>
+                      <Component id="search_Id" max="32767" attributes="0"/>
+                      <Component id="search_Name" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
@@ -98,11 +98,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="search_maHH" min="-2" max="-2" attributes="0"/>
+                  <Component id="search_Id" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="search_TenHH" min="-2" max="-2" attributes="0"/>
+                  <Component id="search_Name" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="search_Button" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
@@ -125,14 +125,14 @@
             <Property name="text" type="java.lang.String" value="M&#xe3; h&#xe0;ng h&#xf3;a :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="search_maHH">
+        <Component class="javax.swing.JTextField" name="search_Id">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
             <Property name="text" type="java.lang.String" value="T&#xea;n h&#xe0;ng h&#xf3;a :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="search_TenHH">
+        <Component class="javax.swing.JTextField" name="search_Name">
         </Component>
         <Component class="javax.swing.JButton" name="search_Button">
           <Properties>
@@ -257,15 +257,15 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="maHangHoa_TextField" min="-2" pref="150" max="-2" attributes="0"/>
-                                      <Component id="tenhangHoa_TextField" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <Component id="product_Id_TextField" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <Component id="product_Name_TextField" min="-2" pref="200" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="ngaySanXuat_FormattedTextField" pref="100" max="32767" attributes="0"/>
+                                      <Component id="product_Date_FormattedTextField" pref="100" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -274,8 +274,8 @@
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="gia_TextField" pref="100" max="32767" attributes="0"/>
-                                          <Component id="soLuong_TextField" max="32767" attributes="0"/>
+                                          <Component id="product_Price_TextField" pref="100" max="32767" attributes="0"/>
+                                          <Component id="product_Quantity_TextField" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -292,12 +292,12 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="maHangHoa_TextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="product_Id_TextField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="tenhangHoa_TextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="product_Name_TextField" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -305,16 +305,16 @@
                           <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="ngaySanXuat_FormattedTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="product_Date_FormattedTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="soLuong_TextField" min="-2" max="-2" attributes="0"/>
+                                  <Component id="product_Quantity_TextField" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="gia_TextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="product_Price_TextField" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -405,18 +405,18 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="gia_TextField">
+                <Component class="javax.swing.JTextField" name="product_Price_TextField">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="soLuong_TextField">
+                <Component class="javax.swing.JTextField" name="product_Quantity_TextField">
                 </Component>
-                <Component class="javax.swing.JTextField" name="maHangHoa_TextField">
+                <Component class="javax.swing.JTextField" name="product_Id_TextField">
                 </Component>
-                <Component class="javax.swing.JTextField" name="tenhangHoa_TextField">
+                <Component class="javax.swing.JTextField" name="product_Name_TextField">
                 </Component>
-                <Component class="javax.swing.JFormattedTextField" name="ngaySanXuat_FormattedTextField">
+                <Component class="javax.swing.JFormattedTextField" name="product_Date_FormattedTextField">
                   <Properties>
                     <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                       <Format format="dd-MM-yyyy" subtype="-1" type="1"/>
@@ -474,7 +474,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Times New Roman" size="14" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
+                    <Property name="text" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                         <EmptyBorder/>
@@ -558,7 +558,34 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                      <GridBagConstraints gridX="0" gridY="3" gridWidth="1" gridHeight="1" fill="1" ipadX="25" ipadY="12" insetsTop="5" insetsLeft="5" insetsBottom="5" insetsRight="5" anchor="18" weightX="0.0" weightY="0.0"/>
+                      <GridBagConstraints gridX="-1" gridY="3" gridWidth="1" gridHeight="1" fill="0" ipadX="25" ipadY="12" insetsTop="5" insetsLeft="5" insetsBottom="5" insetsRight="5" anchor="10" weightX="0.0" weightY="0.0"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JButton" name="back_Button">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="b8" green="d4" red="b0" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Times New Roman" size="14" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Tr&#x1edf; l&#x1ea1;i"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                        <EmptyBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[100, 27]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="back_ButtonActionPerformed"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                      <GridBagConstraints gridX="-1" gridY="3" gridWidth="1" gridHeight="1" fill="0" ipadX="25" ipadY="12" insetsTop="5" insetsLeft="5" insetsBottom="5" insetsRight="5" anchor="10" weightX="0.0" weightY="0.0"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -633,15 +660,15 @@
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="maHH_SortOption" min="-2" max="-2" attributes="0"/>
+                              <Component id="product_Id_SortOption" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="tenHH_SortOption" min="-2" max="-2" attributes="0"/>
+                              <Component id="product_name_SortOption" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="ngaySanXuat_SortOption" min="-2" max="-2" attributes="0"/>
+                              <Component id="product_Date_SortOption" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="soLuong_SortOption" min="-2" max="-2" attributes="0"/>
+                              <Component id="product_Quantity_SortOption" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="gia_SortOption" min="-2" max="-2" attributes="0"/>
+                              <Component id="product_Price_SortOption" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -654,11 +681,11 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="maHH_SortOption" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tenHH_SortOption" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="ngaySanXuat_SortOption" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="soLuong_SortOption" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="gia_SortOption" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="product_Id_SortOption" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="product_name_SortOption" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="product_Date_SortOption" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="product_Quantity_SortOption" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="product_Price_SortOption" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -667,7 +694,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JComboBox" name="maHH_SortOption">
+                <Component class="javax.swing.JComboBox" name="product_Id_SortOption">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="3">
@@ -681,7 +708,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="tenHH_SortOption">
+                <Component class="javax.swing.JComboBox" name="product_name_SortOption">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="3">
@@ -695,7 +722,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="ngaySanXuat_SortOption">
+                <Component class="javax.swing.JComboBox" name="product_Date_SortOption">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="3">
@@ -709,7 +736,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="soLuong_SortOption">
+                <Component class="javax.swing.JComboBox" name="product_Quantity_SortOption">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="3">
@@ -723,7 +750,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="gia_SortOption">
+                <Component class="javax.swing.JComboBox" name="product_Price_SortOption">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="3">

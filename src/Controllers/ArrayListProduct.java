@@ -1,44 +1,44 @@
-package DanhSachDac;
+package Controllers;
 
-import Classes.HangHoa;
+import Classes.Product;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class DanhSachHangHoa1 {
+public class ArrayListProduct {
 
     //Field
     private String listName;
-    private HangHoa list[];
+    private Product list[];
     private int numOfList;//so luong hang hoa toi da
     private int current;//so luong hang hoa hien tai
     DateTimeFormatter date_formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");//dinh dang ngay thang theo dd-MM-yyyy
     private final int defaultSize = 100;
 
     //Constructor
-    public DanhSachHangHoa1() {
+    public ArrayListProduct() {
         this.listName = "Default list";
         this.numOfList = defaultSize;
-        this.list = new HangHoa[numOfList];
+        this.list = new Product[numOfList];
         this.current = 0;
     }
 
-    public DanhSachHangHoa1(int n, String name) {
+    public ArrayListProduct(int n, String name) {
         this.listName = name;
         this.numOfList = n;//danh sach chua duoc n hang hoa
-        this.list = new HangHoa[numOfList];
+        this.list = new Product[numOfList];
         this.current = 0;
     }
 
-    public DanhSachHangHoa1(DanhSachHangHoa1 originalList) {
+    public ArrayListProduct(ArrayListProduct originalList) {
         this.listName = "Clone of " + originalList.getListName();
         this.numOfList = originalList.getNumOfList();
         this.current = originalList.getCurrent();
         if (originalList.getList() != null) {
             this.list = Arrays.stream(originalList.getList())
                     .filter(hh -> hh != null)
-                    .map(HangHoa::new)
-                    .toArray(HangHoa[]::new);
+                    .map(Product::new)
+                    .toArray(Product[]::new);
         } else {
             this.list = null;
         }
@@ -69,11 +69,11 @@ public class DanhSachHangHoa1 {
         this.current = current;
     }
 
-    public HangHoa[] getList() {
+    public Product[] getList() {
         return list;
     }
 
-    public void setList(HangHoa[] list) {
+    public void setList(Product[] list) {
         this.list = list;
     }
 
@@ -96,21 +96,21 @@ public class DanhSachHangHoa1 {
         System.out.println("List: " + this.getListName());
         System.out.println("Current: " + this.getCurrent());
         for (int i = 0; i < this.getCurrent(); i++) {
-            System.out.println(this.getList()[i].getMaHH() + "\t");
-            System.out.println(this.getList()[i].getTenHH() + "\t");
-            System.out.println(this.getList()[i].getNgaySanXuat() + "\t");
-            System.out.println(this.getList()[i].getSoLuong() + "\t");
-            System.out.println(this.getList()[i].getGiaTien() + "\t");
+            System.out.println(this.getList()[i].getId()+ "\t");
+            System.out.println(this.getList()[i].getName()+ "\t");
+            System.out.println(this.getList()[i].getDate()+ "\t");
+            System.out.println(this.getList()[i].getQuantity()+ "\t");
+            System.out.println(this.getList()[i].getPrice()+ "\t");
             System.out.println("");
         }
     }
 
     //kiem tra ma hang hoa da ton tai chua
-    public boolean checkMaHH(HangHoa hangHoa) {
+    public boolean checkId(Product product) {
         //duyet tung hang hoa hien co trong danh sach
         for (int i = 0; i < this.current; i++) {
             //neu maHH da ton tai thi return false
-            if (hangHoa.getMaHH().equals(this.list[i].getMaHH())) {
+            if (product.getId().equals(this.list[i].getId())) {
                 return false;
             }
         }
@@ -118,14 +118,14 @@ public class DanhSachHangHoa1 {
     }
 
     //them hang hoa
-    public boolean add(HangHoa hangHoa) {
-        this.list[this.current++] = hangHoa;//them hang hoa vao cuoi danh sach va tang current
+    public boolean add(Product product) {
+        this.list[this.current++] = product;//them hang hoa vao cuoi danh sach va tang current
         return true;
     }
 
     //cap nhat thong tin hang hoa
-    public boolean update(HangHoa newHangHoa, int i) {
-        this.list[i] = newHangHoa;//ghi de thong tin hang hoa moi vao vi tri hien tai
+    public boolean update(Product newProduct, int i) {
+        this.list[i] = newProduct;//ghi de thong tin hang hoa moi vao vi tri hien tai
         return true;
     }
 
@@ -146,32 +146,32 @@ public class DanhSachHangHoa1 {
         if (this.isEmpty()) {
             return false;
         }
-        HangHoa[] newList = new HangHoa[this.getNumOfList()];
+        Product[] newList = new Product[this.getNumOfList()];
         this.setList(newList);
         this.setCurrent(0);
         return true;
     }
 
     //tim hang hoa
-    public DanhSachHangHoa1 search(String maHangHoa, String tenHangHoa) {
-        DanhSachHangHoa1 search_result = new DanhSachHangHoa1(this.getCurrent(), "Search of " + this.getListName());//danh sach chua ket qua tim kiem
-        //tim theo maHH
-        if (!maHangHoa.equals("")) {
+    public ArrayListProduct search(String id, String name) {
+        ArrayListProduct search_result = new ArrayListProduct(this.getCurrent(), "Search of " + this.getListName());//danh sach chua ket qua tim kiem
+        //tim theo id
+        if (!id.equals("")) {
             for (int i = 0; i < this.current; i++) {
-                if (this.list[i].getMaHH().equals(maHangHoa)) {
+                if (this.list[i].getId().equals(id)) {
                     search_result.add(this.list[i]);//neu tim thay thi them vao search_result
                 }
             }
-        } else if (!tenHangHoa.equals("")) {//tim theo maHH
+        } else if (!name.equals("")) {//tim theo name
             for (int i = 0; i < this.current; i++) {
-                if (this.list[i].getTenHH().equals(tenHangHoa)) {
+                if (this.list[i].getName().equals(name)) {
                     search_result.add(this.list[i]);//neu tim thay thi them vao search_result
                 }
             }
-        } else if (!maHangHoa.equals("") && !tenHangHoa.equals("")) {//tim theo maHH va tenHH
+        } else if (!id.equals("") && !name.equals("")) {//tim theo id va name
             for (int i = 0; i < this.current; i++) {
-                if (this.list[i].getMaHH().equals(maHangHoa)) {
-                    if (this.list[i].getTenHH().equals(tenHangHoa)) {
+                if (this.list[i].getId().equals(id)) {
+                    if (this.list[i].getName().equals(name)) {
                         search_result.add(this.list[i]);//neu tim thay thi them vao search_result
                     }
                 }
@@ -180,57 +180,57 @@ public class DanhSachHangHoa1 {
         return search_result;
     }
 
-    //sap xep danh sach theo maHH
-    public DanhSachHangHoa1 sort_maHH(int mode) {
-        DanhSachHangHoa1 sort_result = new DanhSachHangHoa1(this);//danh sach chua ket qua tim kiem
+    //sap xep danh sach theo id
+    public ArrayListProduct sort_id(int mode) {
+        ArrayListProduct sort_result = new ArrayListProduct(this);//danh sach chua ket qua tim kiem
         if (mode == 0) {//mode 0 sap xep tang dan
-            Arrays.sort(sort_result.list, Comparator.comparing(HangHoa::getMaHH));
+            Arrays.sort(sort_result.list, Comparator.comparing(Product::getId));
         } else {//giam dan
-            Arrays.sort(sort_result.list, Comparator.comparing(HangHoa::getMaHH).reversed());
+            Arrays.sort(sort_result.list, Comparator.comparing(Product::getId).reversed());
         }
         return sort_result;
     }
 
-    //sap xep danh sach theo tenHH
-    public DanhSachHangHoa1 sort_tenHH(int mode) {
-        DanhSachHangHoa1 sort_result = new DanhSachHangHoa1(this);//danh sach chua ket qua tim kiem
+    //sap xep danh sach theo name
+    public ArrayListProduct sort_name(int mode) {
+        ArrayListProduct sort_result = new ArrayListProduct(this);//danh sach chua ket qua tim kiem
         if (mode == 0) {
-            Arrays.sort(sort_result.list, Comparator.comparing(HangHoa::getTenHH));
+            Arrays.sort(sort_result.list, Comparator.comparing(Product::getName));
         } else {
-            Arrays.sort(sort_result.list, Comparator.comparing(HangHoa::getTenHH).reversed());
+            Arrays.sort(sort_result.list, Comparator.comparing(Product::getName).reversed());
         }
         return sort_result;
     }
 
-    //sap xep danh sach theo so luong
-    public DanhSachHangHoa1 sort_SoLuong(int mode) {
-        DanhSachHangHoa1 sort_result = new DanhSachHangHoa1(this);//danh sach chua ket qua tim kiem
+    //sap xep danh sach theo quantity
+    public ArrayListProduct sort_quantity(int mode) {
+        ArrayListProduct sort_result = new ArrayListProduct(this);//danh sach chua ket qua tim kiem
         if (mode == 0) {
-            Arrays.sort(sort_result.list, Comparator.comparing(HangHoa::getSoLuong));
+            Arrays.sort(sort_result.list, Comparator.comparing(Product::getQuantity));
         } else {
-            Arrays.sort(sort_result.list, Comparator.comparing(HangHoa::getSoLuong).reversed());
+            Arrays.sort(sort_result.list, Comparator.comparing(Product::getQuantity).reversed());
         }
         return sort_result;
     }
 
-    //sap xep danh sach theo gia tien
-    public DanhSachHangHoa1 sort_Gia(int mode) {
-        DanhSachHangHoa1 sort_result = new DanhSachHangHoa1(this);//danh sach chua ket qua tim kiem
+    //sap xep danh sach theo price
+    public ArrayListProduct sort_price(int mode) {
+        ArrayListProduct sort_result = new ArrayListProduct(this);//danh sach chua ket qua tim kiem
         if (mode == 0) {
-            Arrays.sort(sort_result.list, Comparator.comparing(HangHoa::getGiaTien));
+            Arrays.sort(sort_result.list, Comparator.comparing(Product::getPrice));
         } else {
-            Arrays.sort(sort_result.list, Comparator.comparing(HangHoa::getGiaTien).reversed());
+            Arrays.sort(sort_result.list, Comparator.comparing(Product::getPrice).reversed());
         }
         return sort_result;
     }
 
-    //sap xep danh sach theo ngay san xuat
-    public DanhSachHangHoa1 sort_NgaySanXuat(int mode) {
-        DanhSachHangHoa1 sort_result = new DanhSachHangHoa1(this);//danh sach chua ket qua tim kiem
+    //sap xep danh sach theo date
+    public ArrayListProduct sort_date(int mode) {
+        ArrayListProduct sort_result = new ArrayListProduct(this);//danh sach chua ket qua tim kiem
         if (mode == 0) {
-            Arrays.sort(sort_result.list, Comparator.comparing(HangHoa::getNgaySanXuat).reversed());
+            Arrays.sort(sort_result.list, Comparator.comparing(Product::getDate).reversed());
         } else {
-            Arrays.sort(sort_result.list, Comparator.comparing(HangHoa::getNgaySanXuat));
+            Arrays.sort(sort_result.list, Comparator.comparing(Product::getDate));
         }
         return sort_result;
     }
@@ -239,13 +239,13 @@ public class DanhSachHangHoa1 {
     public Object[][] toTableData() {
         Object[][] data = new Object[this.current][6];
         for (int i = 0; i < this.current; i++) {
-            HangHoa hh = this.list[i];
+            Product hh = this.list[i];
             data[i][0] = i + 1;
-            data[i][1] = hh.getMaHH();
-            data[i][2] = hh.getTenHH();
-            data[i][3] = hh.getNgaySanXuat().format(date_formatter);
-            data[i][4] = hh.getSoLuong();
-            data[i][5] = hh.getGiaTien();
+            data[i][1] = hh.getId();
+            data[i][2] = hh.getName();
+            data[i][3] = hh.getDate().format(date_formatter);
+            data[i][4] = hh.getQuantity();
+            data[i][5] = hh.getPrice();
         }
         return data;
     }

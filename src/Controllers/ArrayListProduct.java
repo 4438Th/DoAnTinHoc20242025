@@ -1,6 +1,6 @@
 package Controllers;
 
-import Classes.Product;
+import Models.Product;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Comparator;

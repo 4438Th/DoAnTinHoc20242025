@@ -1,6 +1,6 @@
 package Views;
 
-import Classes.Product;
+import Models.Product;
 import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;

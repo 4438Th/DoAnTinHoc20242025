@@ -96,11 +96,11 @@ public class ArrayListProduct {
         System.out.println("List: " + this.getListName());
         System.out.println("Current: " + this.getCurrent());
         for (int i = 0; i < this.getCurrent(); i++) {
-            System.out.println(this.getList()[i].getId()+ "\t");
-            System.out.println(this.getList()[i].getName()+ "\t");
-            System.out.println(this.getList()[i].getDate()+ "\t");
-            System.out.println(this.getList()[i].getQuantity()+ "\t");
-            System.out.println(this.getList()[i].getPrice()+ "\t");
+            System.out.println(this.getList()[i].getId() + "\t");
+            System.out.println(this.getList()[i].getName() + "\t");
+            System.out.println(this.getList()[i].getDate() + "\t");
+            System.out.println(this.getList()[i].getQuantity() + "\t");
+            System.out.println(this.getList()[i].getPrice() + "\t");
             System.out.println("");
         }
     }
@@ -155,26 +155,38 @@ public class ArrayListProduct {
     //tim hang hoa
     public ArrayListProduct search(String id, String name) {
         ArrayListProduct search_result = new ArrayListProduct(this.getCurrent(), "Search of " + this.getListName());//danh sach chua ket qua tim kiem
-        //tim theo id
-        if (!id.equals("")) {
-            for (int i = 0; i < this.current; i++) {
-                if (this.list[i].getId().equals(id)) {
-                    search_result.add(this.list[i]);//neu tim thay thi them vao search_result
+
+        boolean conditionByID = !id.equals("");//dieu kien tim kiem theo ID
+        boolean conditionByName = !name.equals("");//dieu kien tim kiem theo Name
+        int mode = -1;
+
+        if (conditionByID && conditionByName) {
+            mode = 0;
+        } else if (conditionByID) {
+            mode = 1;
+        } else if (conditionByName) {
+            mode = 2;
+        }
+
+        for (int i = 0; i < this.current; i++) {
+            boolean checkID = this.list[i].getId().equalsIgnoreCase(id);//kiem tra id
+            boolean checkName = this.list[i].getName().equalsIgnoreCase(name);//kiem tra name
+            boolean validResult = false;
+
+            switch (mode) {
+            case 0 -> {
+                if (checkID && checkName) validResult = true;
                 }
-            }
-        } else if (!name.equals("")) {//tim theo name
-            for (int i = 0; i < this.current; i++) {
-                if (this.list[i].getName().equals(name)) {
-                    search_result.add(this.list[i]);//neu tim thay thi them vao search_result
+            case 1 -> {
+                if (checkID) validResult = true;
                 }
-            }
-        } else if (!id.equals("") && !name.equals("")) {//tim theo id va name
-            for (int i = 0; i < this.current; i++) {
-                if (this.list[i].getId().equals(id)) {
-                    if (this.list[i].getName().equals(name)) {
-                        search_result.add(this.list[i]);//neu tim thay thi them vao search_result
-                    }
+            case 2 -> {
+                if (checkName) validResult = true;
                 }
+        }
+
+            if (validResult) {
+                search_result.add(this.list[i]);//neu thoa man dieu kien tim kiem thi them vao search_result
             }
         }
         return search_result;

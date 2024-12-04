@@ -1,6 +1,6 @@
 package Models;
 
-import java.time.*;
+import java.time.LocalDate;
 
 public class Product {
 
@@ -78,6 +78,4 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
-   
-
 }
